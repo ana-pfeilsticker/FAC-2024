@@ -1,0 +1,39 @@
+.data
+barraN:
+	.string "\n"
+	
+.text 
+
+main:
+
+#ler o primeiro numero
+
+li a7, 5 # código syscall para read
+ecall
+mv t0, a0
+
+#ler o segundo numero
+
+li a7, 5
+ecall
+mv t1, a0
+
+
+#calcular a soma
+
+add t2, t1, t0
+mv a0, t2
+li a7, 1  #printar o resultado
+ecall
+# printa o barra 
+li a0, 1
+la a1, barraN
+li a2, 1
+li a7, 64
+ecall
+
+
+end: 
+li a7, 10
+ecall
+
