@@ -1,0 +1,48 @@
+.text 
+
+
+
+main:
+
+#lendo o primeiro numero
+
+li a7, 5
+ecall
+mv t0, a0
+
+
+#lendo o segundo numero 
+
+li a7, 5
+ecall
+mv t1, a0
+
+
+#verificando se t0 é maior q t1, se for, chamarei o 
+
+bgt t1, t0, maior
+
+sub t2, t0, t1
+
+mv a0, t2
+
+li a7, 1
+ecall
+
+j fim
+
+maior: 
+	add t2, t1, t0
+	mv a0, t2
+	li a7, 1
+	ecall
+
+fim:
+
+	li a7, 10
+	ecall
+
+
+
+
+
