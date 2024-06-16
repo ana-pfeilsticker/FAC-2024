@@ -1,0 +1,198 @@
+.data
+Adicao: .string "ADD: "
+Subtracao: .string "SUB: "
+and: .string "AND: "
+or: .string "OR: "
+xor: .string "XOR: "
+mascara: .string "MASK: "
+sll: .string "SLL("
+srl: .string "SRL("
+end: .string "): "
+endofline: .string "\n"
+.text
+main:
+
+#Le o primeiro número
+
+
+li a7, 5 
+ecall
+mv t0, a0  #a = t0
+
+
+#Segundo numero
+
+
+li a7, 5
+ecall
+mv t1, a0  #b = t1
+
+
+
+#Terceiro numero
+
+li a7, 5
+ecall
+mv t2, a0  #c = t2
+
+
+
+
+#Imprimindo a linha de ADD e somando 
+li a0, 1
+la a1, Adicao  # = "ADD: "
+li a2, 5
+li a7, 64
+ecall
+add a0, t0, t1  # = a + b
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline # = /n
+li a2, 1
+li a7, 64
+ecall
+
+
+
+
+#Imprimindo a linha de SUB e subtraindo
+
+
+li a0, 1
+la a1, Subtracao   # = "SUB: "
+li a2, 5
+li a7, 64
+ecall
+sub a0, t0, t1   # = a - b
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline  # = /n
+li a2, 1
+li a7, 64
+ecall
+
+#Imprimindo a linha de AND e fazendo a operação
+
+
+li a0, 1
+la a1, and
+li a2, 5
+li a7, 64
+ecall
+and a0, t0, t1
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+
+
+
+
+#Imprimindo a linha de OR e fazendo a operação
+
+li a0, 1
+la a1, or
+li a2, 4
+li a7, 64
+ecall
+or a0, t0, t1
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+
+#Imprimindo o XOR e fazendo a operação
+
+
+li a0, 1
+la a1, xor
+li a2, 5
+li a7, 64
+ecall
+xor a0, t0, t1
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+
+#Mascara
+
+li a0, 1
+la a1, mascara
+li a2, 6
+li a7, 64
+ecall
+andi a0, t2, 31
+li a7, 1
+ecall
+mv t3, a0
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+
+#Desloca p/ esquerda
+
+
+li a0, 1
+la a1, sll
+li a2, 4
+li a7, 64
+ecall
+andi a0, t2, 31
+li a7, 1
+ecall
+mv t3, a0
+li a0, 1
+la a1, end
+li a2, 3
+li a7, 64
+ecall
+sll a0, t0, t3
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+
+#Desloca p/ direita
+
+
+li a0, 1
+la a1, srl
+li a2, 4
+li a7, 64
+ecall
+andi a0, t2, 31
+li a7, 1
+ecall
+mv t3, a0
+li a0, 1
+la a1, end
+li a2, 3
+li a7, 64
+ecall
+srl a0, t1, t3
+li a7, 1
+ecall
+li a0, 1
+la a1, endofline
+li a2, 1
+li a7, 64
+ecall
+li a7, 10
+ecall 
